@@ -1,0 +1,86 @@
+
+// breakpoint
+@mixin breakpoints-sm() {
+    @media only screen and (min-width: 48em) {
+        @content;
+    }
+}
+
+@mixin breakpoints-md() {
+    @media only screen and (min-width: 62em) {
+        @content;
+    }
+}
+
+@mixin breakpoints-lg() {
+    @media only screen and (min-width: 75em) {
+        @content;
+    }
+}
+
+// font-smoothing
+@mixin font-smoothing($value: antialiased) {
+    text-rendering: auto;
+
+    @if $value == antialiased {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+    @else {
+        -webkit-font-smoothing: subpixel-antialiased;
+        -moz-osx-font-smoothing: auto;
+    }
+}
+
+// clearfix
+@mixin clearfix {
+    &:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+}
+
+// placeholder
+@mixin optional-at-root($sel) {
+    @at-root #{if(not &, $sel, selector-append(&, $sel))} {
+        @content;
+    }
+}
+
+@mixin placeholder {
+    @include optional-at-root('::-webkit-input-placeholder') {
+        @content;
+    }
+
+    @include optional-at-root(':-moz-placeholder') {
+        @content;
+    }
+
+    @include optional-at-root('::-moz-placeholder') {
+        @content;
+    }
+
+    @include optional-at-root(':-ms-input-placeholder') {
+        @content;
+    }
+}
+
+// selection
+@mixin selection($color, $background) {
+    $prefixes: ("-moz-", "-webkit-", "-o-", "-ms-", "");
+    @each $prefix in $prefixes {
+        &::#{$prefix}selection {
+            color: $color;
+            background: $background;
+        }
+    }
+}
+
+// disply flex {
+@mixin display-flex {
+    display: -webkit-box;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: flex;
+}

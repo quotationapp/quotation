@@ -1,1 +1,2 @@
-console.log("Main js file");
+
+console.log('quotation.');

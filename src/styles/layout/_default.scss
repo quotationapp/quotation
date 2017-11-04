@@ -1,0 +1,143 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Catamaran', sans-serif;
+    color: $color-txt;
+    outline: none;
+    @include box-sizing(border-box);
+    @include font-smoothing(antialiased);
+}
+
+@include selection($white, $color-main);
+
+body {
+    width: 100vw;
+    overflow-x: hidden;
+    background: $color-bg;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+img {
+    max-width: 100%;
+}
+
+// Header
+header {
+
+    h1 {
+        font-size: 0;
+        text-align: center;
+        color: transparent;
+        margin: 1.5rem 0;
+
+        img {
+            width: auto;
+            height: 2rem;
+        }
+    }
+}
+
+// values
+.values {
+    position: relative;
+    @include clearfix;
+}
+
+// Change
+.change {
+    text-align: center;
+}
+
+// Info
+.info {
+
+    p {
+        font-size: .8rem;
+        font-weight: 700;
+        text-align: center;
+        text-transform: uppercase;
+        color: $gray-dark;
+        margin: 2rem auto 1rem;
+    }
+}
+
+// From
+.from {
+    text-align: right;
+
+    .input-group {
+        z-index: 2;
+    }
+}
+
+// To
+.to {
+    text-align: right;
+
+    .input-group {
+        z-index: 2;
+    }
+}
+
+// Breakpoints
+@include breakpoints-sm {
+    header {
+
+        h1 {
+            margin: 2rem 0;
+
+            img {
+                height: 3rem;
+            }
+        }
+    }
+}
+
+@include breakpoints-md {
+
+    header {
+
+        h1 {
+            margin: 3rem 0;
+
+            img {
+                height: 4rem;
+            }
+        }
+    }
+
+    // Change
+    .change {
+        position: absolute;
+        right: 0;
+        left: 0;
+        top: 6rem;
+    }
+
+    // From
+    .from {
+        text-align: right;
+
+        .input-group {
+
+            button {
+                -webkit-box-orient: horizontal;
+                -webkit-box-direction: reverse;
+                -ms-flex-direction: row-reverse;
+                flex-direction: row-reverse;
+                float: right;
+
+                span {
+                    margin: 0 .75rem 0 0;
+                }
+            }
+        }
+    }
+
+    // To
+    .to {
+        text-align: left;
+    }
+}

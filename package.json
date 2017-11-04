@@ -32,5 +32,10 @@
     "concurrently": "^3.5.0",
     "cpx": "^1.5.0",
     "node-sass": "^4.5.3"
+  },
+  "dependencies": {
+    "flexboxgrid-sass": "^8.0.5",
+    "modernizr": "^3.5.0",
+    "sass-css3-mixins": "^0.1.0"
   }
 }

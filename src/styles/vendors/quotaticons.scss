@@ -1,0 +1,83 @@
+
+@font-face {
+    font-family: 'quotaticons';
+    src: url('../fonts/quotaticons.eot?v=1.0');
+    src: url('../fonts/quotaticons.eot?v=1.0#iefix') format('embedded-opentype'),
+         url('../fonts/quotaticons.ttf?v=1.0') format('truetype'),
+         url('../fonts/quotaticons.woff?v=1.0') format('woff'),
+         url('../fonts/quotaticons.woff2?v=1.0') format('woff2'),
+         url('../fonts/quotaticons.svg?v=1.0#quotaticons') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.quotaticons,
+[class^="ic-"],
+[class*=" ic-"] {
+    font-family: 'quotaticons' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    @include font-smoothing(antialiased);
+
+    // enable Ligatures
+    letter-spacing: 0;
+    -webkit-font-feature-settings: "liga";
+    -moz-font-feature-settings: "liga=1";
+    -moz-font-feature-settings: "liga";
+    -ms-font-feature-settings: "liga" 1;
+    font-feature-settings: "liga";
+    -webkit-font-variant-ligatures: discretionary-ligatures;
+    font-variant-ligatures: discretionary-ligatures;
+}
+
+.ic-quotation {
+    &:before {
+        content: $ic-quotation;
+    }
+}
+
+.ic-favicon {
+    &:before {
+        content: $ic-favicon;
+    }
+}
+
+.ic-arrow-down {
+    &:before {
+        content: $ic-arrow-down;
+    }
+}
+
+.ic-arrow-left {
+    &:before {
+        content: $ic-arrow-left;
+    }
+}
+
+.ic-arrow-right {
+    &:before {
+        content: $ic-arrow-right;
+    }
+}
+
+.ic-arrow-up {
+    &:before {
+        content: $ic-arrow-up;
+    }
+}
+
+.ic-close {
+    &:before {
+        content: $ic-close;
+    }
+}
+
+.ic-update {
+    &:before {
+        content: $ic-update;
+    }
+}
