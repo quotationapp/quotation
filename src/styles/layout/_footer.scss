@@ -1,0 +1,42 @@
+
+footer {
+    width: 100vw;
+    font-size: .8rem;
+    font-weight: 700;
+    text-align: center;
+    color: $gray;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+
+    position: fixed;
+    bottom: 0;
+
+    ul {
+        list-style: none;
+
+        li {
+            display: inline-block;
+            margin: .5rem;
+
+            &:first-child {
+                margin-left: 0;
+            }
+
+            &:last-child {
+                margin-right: 0;
+            }
+
+            a {
+                color: $gray;
+
+                &:hover {
+                    color: $gray-dark;
+                }
+            }
+        }
+    }
+
+    @media screen and (max-height: 430px) {
+        display: none;
+    }
+}

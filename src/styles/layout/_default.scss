@@ -2,142 +2,131 @@
 * {
     margin: 0;
     padding: 0;
-    font-family: 'Catamaran', sans-serif;
-    color: $color-txt;
     outline: none;
     @include box-sizing(border-box);
     @include font-smoothing(antialiased);
 }
 
-@include selection($white, $color-main);
+@include selection($color-bg, $color-main);
 
 body {
     width: 100vw;
-    overflow-x: hidden;
     background: $color-bg;
+    font-family: 'Catamaran', sans-serif;
     font-size: 1rem;
+    color: $color-txt;
     line-height: 1.5;
+    overflow-x: hidden;
 }
 
 img {
     max-width: 100%;
 }
 
-// Header
-header {
+a {
+    text-decoration: none;
+    color: $gray-dark;
+    @include transition(all 250ms linear);
 
-    h1 {
-        font-size: 0;
-        text-align: center;
-        color: transparent;
-        margin: 1.5rem 0;
+    &:hover {
+        color: $gray-darker;
+    }
+}
 
-        img {
-            width: auto;
-            height: 2rem;
+main {
+    height: 97vh;
+    overflow: hidden;
+    padding-top: 3rem;
+    @extend .row;
+    @extend .middle-xs;
+
+    // values
+    .values {
+        position: relative;
+
+        // From
+        .from {
+            text-align: right;
+
+            .input-group {
+                z-index: 2;
+            }
+        }
+
+        // To
+        .to {
+            text-align: right;
+
+            .input-group {
+                z-index: 2;
+            }
+        }
+
+        // Change
+        .change {
+            text-align: center;
+        }
+
+        // Info
+        .info {
+
+            p {
+                font-size: .8rem;
+                font-weight: 700;
+                text-align: center;
+                text-transform: uppercase;
+                color: $gray-dark;
+                margin: 2rem auto 1rem;
+            }
         }
     }
 }
 
-// values
-.values {
-    position: relative;
-    @include clearfix;
-}
-
-// Change
-.change {
-    text-align: center;
-}
-
-// Info
-.info {
-
-    p {
-        font-size: .8rem;
-        font-weight: 700;
-        text-align: center;
-        text-transform: uppercase;
-        color: $gray-dark;
-        margin: 2rem auto 1rem;
-    }
-}
-
-// From
-.from {
-    text-align: right;
-
-    .input-group {
-        z-index: 2;
-    }
-}
-
-// To
-.to {
-    text-align: right;
-
-    .input-group {
-        z-index: 2;
-    }
+.container-fluid {
+    overflow-x: hidden;
 }
 
 // Breakpoints
-@include breakpoints-sm {
-    header {
-
-        h1 {
-            margin: 2rem 0;
-
-            img {
-                height: 3rem;
-            }
-        }
-    }
-}
+@include breakpoints-sm {}
 
 @include breakpoints-md {
 
-    header {
+    main {
 
-        h1 {
-            margin: 3rem 0;
+        .values {
 
-            img {
-                height: 4rem;
-            }
-        }
-    }
+            // From
+            .from {
+                text-align: right;
 
-    // Change
-    .change {
-        position: absolute;
-        right: 0;
-        left: 0;
-        top: 6rem;
-    }
+                .input-group {
 
-    // From
-    .from {
-        text-align: right;
+                    button {
+                        -webkit-box-orient: horizontal;
+                        -webkit-box-direction: reverse;
+                        -ms-flex-direction: row-reverse;
+                        flex-direction: row-reverse;
+                        float: right;
 
-        .input-group {
-
-            button {
-                -webkit-box-orient: horizontal;
-                -webkit-box-direction: reverse;
-                -ms-flex-direction: row-reverse;
-                flex-direction: row-reverse;
-                float: right;
-
-                span {
-                    margin: 0 .75rem 0 0;
+                        span {
+                            margin: 0 .75rem 0 0;
+                        }
+                    }
                 }
             }
-        }
-    }
 
-    // To
-    .to {
-        text-align: left;
+            // To
+            .to {
+                text-align: left;
+            }
+
+            // Change
+            .change {
+                position: absolute;
+                right: 0;
+                left: 0;
+                top: 6.5rem;
+            }
+        }
     }
 }
