@@ -149,27 +149,27 @@
             }
 
             button {
-                height: 3rem;
+                height: 2.5rem;
                 @include border-radius(1.5rem);
 
                 position: relative;
                 margin-top: 2rem;
 
                 img {
-                    width: 3rem;
-                    height: 3rem;
+                    width: 2.5rem;
+                    height: 2.5rem;
                 }
 
                 span {
-                    font-size: 1.5rem;
+                    font-size: 1.2rem;
 
                     display: inline-block;
                 }
 
                 &:after {
-                    width: 3rem;
-                    height: 3rem;
-                    font-size: 3rem;
+                    width: 2.5rem;
+                    height: 2.5rem;
+                    font-size: 2.5rem;
                 }
             }
         }
