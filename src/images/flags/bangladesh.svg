@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="96px" height="96px" viewBox="0 0 96 96" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>bangladesh</title>
+    <desc>designed by Freepik from Flaticon</desc>
+    <defs>
+        <polygon id="path-1" points="0.0140487805 0.0934306569 0.0140487805 95.7668905 95.9068098 95.7668905 95.9068098 0.0934306569"></polygon>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="bangladesh">
+            <g id="Group-3">
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <g id="Clip-2"></g>
+                <path d="M95.9068098,47.9301606 C95.9068098,74.3488467 74.4365268,95.7668905 47.9534049,95.7668905 C21.4691122,95.7668905 0,74.3488467 0,47.9301606 C0,21.5103066 21.4691122,0.0934306569 47.9534049,0.0934306569 C74.4365268,0.0934306569 95.9068098,21.5103066 95.9068098,47.9301606 Z" id="Fill-1" fill="#496E2D" mask="url(#mask-2)"></path>
+            </g>
+            <path d="M58.3773659,47.9301606 C58.3773659,59.4165255 49.0435902,68.7285255 37.5282732,68.7285255 C26.0141268,68.7285255 16.6791805,59.4165255 16.6791805,47.9301606 C16.6791805,36.4428613 26.0141268,27.1317956 37.5282732,27.1317956 C49.0435902,27.1317956 58.3773659,36.4428613 58.3773659,47.9301606 Z" id="Fill-4" fill="#D80027"></path>
+        </g>
+    </g>
+</svg>
