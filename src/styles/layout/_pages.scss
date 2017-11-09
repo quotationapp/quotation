@@ -1,0 +1,146 @@
+
+body.page {
+    background: $color-main;
+    color: $color-bg;
+
+    header {
+        position: relative;
+
+        h1 {
+            color: $color-bg;
+
+            a {
+                color: $color-bg;
+                display: inline-block;
+
+                &:hover {
+                    @include transform( scale(1.1) );
+                }
+            }
+        }
+    }
+
+    footer {
+        display: none;
+    }
+
+    main {
+        height: auto;
+        overflow-x: hidden;
+        padding-top: 0;
+        padding-bottom: 0;
+        margin-bottom: -2rem;
+
+        .row {
+            //width: 100%;
+        }
+
+        h1, h2, h3,
+        h4, h5, h6 {
+            margin-top: 2rem;
+
+            &:first-child {
+                margin-top: 0;
+            }
+        }
+
+        h1 {
+            margin-bottom: 1rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+
+        a {
+            text-decoration: underline;
+            color: inherit;
+
+            &:hover {
+                //font-weight: 700;
+                color: darken($color-main, 20%);
+            }
+        }
+
+        ul {
+            list-style: square;
+            margin: -.5rem 0 .5rem;
+
+            li {
+                margin-left: 2rem;
+            }
+        }
+
+        span {
+            font-size: .9rem;
+            font-weight: 200;
+            margin-top: 3rem;
+            margin-bottom: 2rem;
+            display: block;
+        }
+
+        .last-sm {
+            padding-bottom: 6rem;
+        }
+
+        nav {
+            font-size: 2rem;
+            font-weight: 200;
+
+            background: darken($green, 10%);
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+
+            ul {
+                list-style: none;
+                margin: .5rem 0;
+
+                li {
+                    margin: 0;
+
+                    a {
+                        width: 100%;
+                        text-decoration: none;
+                        color: $color-bg;
+                        display: block;
+                        margin: .5rem 0;
+
+                        &:hover {
+                            color: $color-bg;
+                            @include transform(translateX(1rem));
+                        }
+                    }
+
+                    &.current-page {
+                        font-weight: 700;
+                        pointer-events: none;
+
+                        a:after {
+                            content: ".";
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @include breakpoints-sm {
+
+        main {
+
+            nav {
+                background: none;
+                padding-top: 0;
+                padding-bottom: 0;
+
+                ul {
+                    margin-top: -.5rem;
+                }
+            }
+        }
+    }
+}
