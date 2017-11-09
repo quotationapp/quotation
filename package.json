@@ -2,21 +2,29 @@
   "name": "quotation",
   "version": "0.1.0",
   "private": true,
+  "scripts": {
+    "build-css": "node-sass src/styles/main.scss -o src/styles/",
+    "watch-css": "npm run build-css && node-sass src/styles/main.scss -o src/styles/ -w",
+    "start-js": "react-scripts start",
+    "start": "npm-run-all -p watch-css start-js",
+    "build-js": "react-scripts build",
+    "build": "npm-run-all build-css build-js",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kleverspace/quotation"
+  },
+  "author": "Quotation Team",
+  "license": "MIT",
   "dependencies": {
     "flexboxgrid-sass": "^8.0.5",
-    "node-sass-chokidar": "0.0.3",
+    "node-sass": "^4.6.0",
     "npm-run-all": "^4.1.2",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-scripts": "1.0.17",
     "sass-css3-mixins": "^0.1.0"
-  },
-  "scripts": {
-    "build-css": "node-sass-chokidar src/ -o src/",
-    "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
   }
 }
