@@ -6,7 +6,7 @@ import App from './containers/App';
 import Home from "./containers/Home";
 import Terms from "./containers/Terms";
 
-import './styles/main.css'
+import './assets/styles/main.css'
 
 ReactDOM.render(
     (
