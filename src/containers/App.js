@@ -6,8 +6,13 @@ class App extends Component {
   render() {
     return (
         <div>
-          <Header title="quotation"/>
-          <Footer/>
+            <Header title="quotation"/>
+
+            <main className="container-fluid wrapper">
+                {this.props.children}
+            </main>
+
+            <Footer/>
         </div>
     );
   }
