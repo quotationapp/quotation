@@ -11,7 +11,7 @@ class Currency extends Component {
                     <input type="text" id="from" defaultValue="381,53"/>
 
                     <button>
-                        <img src={this.props.flag} alt={this.props.name + ' (flag)'}/>
+                        <img src={this.getFlagImage(this.props.flag)} alt={this.props.name + ' (flag)'}/>
                         <span>{this.props.code}</span>
                     </button>
 
@@ -25,6 +25,20 @@ class Currency extends Component {
                 </div>
             </div>
         );
+    }
+
+    getFlagImage(imageName) {
+
+        let image;
+
+        try {
+            image = require('../assets/images/flags/' + imageName);
+        } catch (e) {
+            image = '';
+        }
+
+        return image;
+
     }
 }
 

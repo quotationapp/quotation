@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="96px" height="96px" viewBox="0 0 96 96" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>republic-of-the-congo</title>
+    <desc>designed by Freepik from Flaticon</desc>
+    <defs>
+        <polygon id="path-1" points="0.0140487805 0.0934977172 0.0140487805 95.9998175 95.9062744 95.9998175 95.9062744 0.0934977172"></polygon>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="republic-of-the-congo">
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <g id="Clip-2"></g>
+            <path d="M25.9939902,90.6888585 L61.2220098,61.3154341 L90.5944976,26.0883512 C86.0277073,17.2373854 78.7864976,9.99266341 69.9402146,5.41931707 L34.6838634,34.7782244 L5.32589268,70.033639 C9.89806829,78.8810927 17.143961,86.1213659 25.9939902,90.6888585 Z" id="Fill-1" fill="#FFDA44" mask="url(#mask-2)"></path>
+            <path d="M81.862478,81.9559024 C96.9913756,66.8270049 99.8954927,44.1066146 90.5816195,26.0590829 L25.9656585,90.675278 C44.0122537,99.9889171 66.7335805,97.0850341 81.862478,81.9559024 Z" id="Fill-3" fill="#D80027" mask="url(#mask-2)"></path>
+            <path d="M14.0440976,14.1368195 C-1.0848,29.2657171 -3.98961951,51.9870439 5.3249561,70.0345756 L69.9411512,5.41861463 C51.8936195,-3.89619512 29.1722927,-0.991141463 14.0440976,14.1368195 Z" id="Fill-4" fill="#6DA544" mask="url(#mask-2)"></path>
+        </g>
+    </g>
+</svg>

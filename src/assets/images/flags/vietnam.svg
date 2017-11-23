@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="96px" height="96px" viewBox="0 0 96 96" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>vietnam</title>
+    <desc>designed by Freepik from Flaticon</desc>
+    <defs>
+        <polygon id="path-1" points="0.0140487805 0.0934306569 0.0140487805 95.7668905 95.9068098 95.7668905 95.9068098 0.0934306569"></polygon>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="vietnam">
+            <g id="Group-3">
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <g id="Clip-2"></g>
+                <path d="M95.9068098,47.9301606 C95.9068098,74.3488467 74.4365268,95.7668905 47.9534049,95.7668905 C21.4691122,95.7668905 0,74.3488467 0,47.9301606 C0,21.5103066 21.4691122,0.0934306569 47.9534049,0.0934306569 C74.4365268,0.0934306569 95.9068098,21.5103066 95.9068098,47.9301606 Z" id="Fill-1" fill="#D80027" mask="url(#mask-2)"></path>
+            </g>
+            <polygon id="Fill-4" fill="#FFDA44" points="47.9534049 25.051562 53.1282732 40.940146 69.8753561 40.940146 56.3267122 50.7594745 61.5018146 66.6480584 47.9534049 56.8287299 34.4049951 66.6480584 39.5798634 50.7594745 26.0314537 40.940146 42.7783024 40.940146"></polygon>
+        </g>
+    </g>
+</svg>
