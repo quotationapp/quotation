@@ -2,6 +2,7 @@ let bodyParser  = require("body-parser");
 let schedule    = require('node-schedule');
 let mongoose    = require('mongoose');
 let express     = require("express");
+let moment      = require("moment");
 let axios       = require("axios");
 let app         = express();
 
@@ -33,22 +34,26 @@ let Log = mongoose.model('Log', mongoose.Schema({ updated_at: { type: Date, defa
 app.get('/', (req, res) => { res.send("Quotation API"); });
 app.get('/currencies', (req, res) => {
 
-    Currencies.find({}, {name: 1, price: 1, currency_time: 1, updated_at: 1, _id: 0}, function (err, currency) {
-        if (err)
-            res.send(err);
+    Currencies
+        .find({}, {name: 1, price: 1, currency_time: 1, updated_at: 1, _id: 0}, function (err, currency) {
+            if (err)
+                res.send(err);
         res.json(currency);
     });
 
 });
 
 // Cron job to consult the currencies every hour.
-schedule.scheduleJob('0 * * * *', function(){
-    console.log('Executing cron to consult the Yahoo Finance API.');
+schedule.scheduleJob('*/30 * * * *', function(){
+
+    let now = moment().format('DD/MM HH:mm:ss');
+
+    console.log(now + ' - Executing cron to consult the Yahoo Finance API.');
 
     axios.get('https://finance.yahoo.com/webservice/v1/symbols/allcurrencies/quote?format=json')
-        .then(function (response) {
+        .then(response => {
 
-            if (response.data.list.resources && response.data.list.resources.length) {
+            if (response.data.list && response.data.list.resources && response.data.list.resources.length) {
 
                 Currencies.collection.drop();
 
@@ -63,14 +68,14 @@ schedule.scheduleJob('0 * * * *', function(){
                 });
 
                 Log().save()
+            } else {
+                console.log(now + ' - Yahoo Finance API did not return currencies.');
             }
 
         })
         .catch(err => {
             console.log(err);
         });
-
-    res.json("Saved successfully!");
 });
 
 
