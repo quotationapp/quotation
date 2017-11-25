@@ -26,6 +26,7 @@
     "flexboxgrid-sass": "^8.0.5",
     "moment": "^2.19.2",
     "mongoose": "^4.13.4",
+    "mongoose-double": "0.0.1",
     "node-sass": "^4.6.0",
     "node-schedule": "^1.2.5",
     "nodemon": "^1.12.1",

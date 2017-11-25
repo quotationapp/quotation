@@ -44,17 +44,20 @@ app.get('/currencies', (req, res) => {
 });
 
 // Cron job to consult the currencies every hour.
-schedule.scheduleJob('*/30 * * * *', function(){
+schedule.scheduleJob('*/30 * * * *', () => {
 
     let now = moment().format('DD/MM HH:mm:ss');
+    let YahooFinanceAPIUrl = 'https://finance.yahoo.com/webservice/v1/symbols/allcurrencies/quote?format=json';
 
-    console.log(now + ' - Executing cron to consult the Yahoo Finance API.');
+    console.log('%s - Executing cron to consult the Yahoo Finance API.', now);
 
-    axios.get('https://finance.yahoo.com/webservice/v1/symbols/allcurrencies/quote?format=json')
+    // Consult the Yahoo Finance API webservice
+    axios.get(YahooFinanceAPIUrl)
         .then(response => {
 
             if (response.data.list && response.data.list.resources && response.data.list.resources.length) {
 
+                // Drop currencies table
                 Currencies.collection.drop();
 
                 response.data.list.resources.forEach(item => {
@@ -63,23 +66,26 @@ schedule.scheduleJob('*/30 * * * *', function(){
                         name: item.resource.fields.name,
                         price: item.resource.fields.price,
                         currency_time: item.resource.fields.utctime
-                    }).save();
+                    })
+                        .save()
+                        .catch(err => console.log(err));
 
                 });
 
-                Log().save()
+                Log()
+                    .save()
+                    .catch(err => console.log(err));
             } else {
-                console.log(now + ' - Yahoo Finance API did not return currencies.');
+                console.log('%s - Yahoo Finance API did not return currencies.', now);
             }
 
         })
-        .catch(err => {
-            console.log(err);
-        });
+        .catch(err => console.log(err));
 });
 
+
+// Define port
+let port = 3001;
 
 // Starting the server
-let server = app.listen(3001, () => {
-    console.log("Listening on port %s...", server.address().port);
-});
+app.listen(port, () => console.log("Listening on port %s...", port));
