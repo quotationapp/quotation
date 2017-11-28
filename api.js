@@ -27,7 +27,7 @@ let SchemaTypes = mongoose.Schema.Types;
 
 // Database schemas
 let Currencies = mongoose.model('Currencies', mongoose.Schema({
-    name: {type: String, required: true},
+    code: {type: String, required: true},
     price: {type: SchemaTypes.Double, required: true},
     currency_time: { type: Date },
     updated_at: { type: Date, default: Date.now }
@@ -38,10 +38,11 @@ let Log = mongoose.model('Log', mongoose.Schema({ updated_at: { type: Date, defa
 
 // API endpoints
 app.get('/', (req, res) => { res.send("Quotation API"); });
+app.get('/getCurrencies', consumeApi);
 app.get('/currencies', (req, res) => {
 
     Currencies
-        .find({}, {name: 1, price: 1, currency_time: 1, updated_at: 1, _id: 0}, function (err, currency) {
+        .find({}, {code: 1, price: 1, currency_time: 1, updated_at: 1, _id: 0}, function (err, currency) {
             if (err)
                 res.send(err);
         res.json(currency);
@@ -49,8 +50,8 @@ app.get('/currencies', (req, res) => {
 
 });
 
-// Cron job to consult the currencies every hour.
-schedule.scheduleJob('*/30 * * * *', () => {
+// Function to consume Yahoo Finance API and get all currencies
+function consumeApi (req, res) {
 
     let now = moment().format('DD/MM HH:mm:ss');
     let YahooFinanceAPIUrl = 'https://finance.yahoo.com/webservice/v1/symbols/allcurrencies/quote?format=json';
@@ -69,7 +70,7 @@ schedule.scheduleJob('*/30 * * * *', () => {
                 response.data.list.resources.forEach(item => {
 
                     new Currencies({
-                        name: item.resource.fields.name,
+                        code: item.resource.fields.name.replace("USD/", ""),
                         price: item.resource.fields.price,
                         currency_time: item.resource.fields.utctime
                     })
@@ -81,14 +82,21 @@ schedule.scheduleJob('*/30 * * * *', () => {
                 Log()
                     .save()
                     .catch(err => console.log(err));
+
+                if (res.send) {
+                    res.send('The API query completed successfully.');
+                }
+
             } else {
                 console.log('%s - Yahoo Finance API did not return currencies.', now);
             }
 
         })
         .catch(err => console.log(err));
-});
+}
 
+// Cron job to consult the currencies every hour.
+schedule.scheduleJob('*/30 * * * *', consumeApi);
 
 // Define port
 let port = 3001;

@@ -1,7 +1,6 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
+import axios from "axios";
 import Currency from "../components/Currency";
-
-let axios = require("axios");
 
 class Home extends Component {
 
@@ -29,7 +28,7 @@ class Home extends Component {
 
     findCurrency(code) {
 
-        return this.state.currencies.find(currency => currency.name === 'USD/' + code);
+        return this.state.currencies.find(currency => currency.code === code);
     }
 
     getCurrencyValue() {
