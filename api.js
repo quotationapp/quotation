@@ -83,7 +83,7 @@ function consumeApi (req, res) {
                     .save()
                     .catch(err => console.log(err));
 
-                if (res.send) {
+                if (res && res.send) {
                     res.send('The API query completed successfully.');
                 }
 

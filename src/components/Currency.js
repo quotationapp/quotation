@@ -2,16 +2,28 @@ import React, {Component} from 'react';
 
 class Currency extends Component {
 
-    formatMoney = function(n, b, g, l){
-        let j, c, d, t, s, i;
-        c = b ? b : 2;
-        d = g === undefined ? "." : g;
-        t = l === undefined ? "," : l;
-        s = n < 0 ? "-" : "";
-        i = String(parseInt(n = Math.abs(Number(n) || 0).toFixed(c), 10));
-        j = i.length > 3 ? i.length % 3 : 0;
-        return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
-    };
+    constructor(props){
+        super(props);
+
+        this.state = {
+            value: 1
+        }
+
+    }
+
+    getFlagImage(imageName) {
+        let image;
+        try { image = require('../assets/images/flags/' + imageName); } catch (e) { image = ''; }
+        return image;
+    }
+
+    componentWillReceiveProps(props) {
+        this.setState({value: parseFloat(props.value).toFixed(2)});
+    }
+
+    onChangeValue(event) {
+        this.setState({value: parseFloat(event.target.value).toFixed(2)});
+    }
 
     render() {
         return (
@@ -20,7 +32,7 @@ class Currency extends Component {
 
                     <label>{this.props.symbol}</label>
 
-                    <input type="text" id="from" defaultValue={ this.formatMoney(this.props.value, 2, ',', '.')} />
+                    <input type="number" min="1" onChange={ (e) => { this.onChangeValue(e); return this.props.onChange(e.target.value);  } } id="from" value={ this.state.value } />
 
                     <button>
                         <img src={this.getFlagImage(this.props.flag)} alt={this.props.name + ' (flag)'}/>
@@ -37,20 +49,6 @@ class Currency extends Component {
                 </div>
             </div>
         );
-    }
-
-    getFlagImage(imageName) {
-
-        let image;
-
-        try {
-            image = require('../assets/images/flags/' + imageName);
-        } catch (e) {
-            image = '';
-        }
-
-        return image;
-
     }
 }
 
