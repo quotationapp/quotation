@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from "axios";
 import Currency from "../components/Currency";
+import { getApiUrl } from "../common/APIUtils";
 
 class Home extends Component {
 
@@ -22,7 +23,7 @@ class Home extends Component {
 
     componentWillMount() {
 
-        axios.get(window.apiURL + 'currencies')
+        axios.get(getApiUrl(this.props.location) + 'currencies')
             .then(response => {
                 this.setState({currencies: response.data});
                 this.setState({fromCurrency: this.findCurrency(this.state.defaultFromCurrency)});
