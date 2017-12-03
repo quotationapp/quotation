@@ -22,7 +22,7 @@ class Home extends Component {
 
     componentWillMount() {
 
-        axios.get('http://localhost:3001/currencies')
+        axios.get(window.apiURL + 'currencies')
             .then(response => {
                 this.setState({currencies: response.data});
                 this.setState({fromCurrency: this.findCurrency(this.state.defaultFromCurrency)});
