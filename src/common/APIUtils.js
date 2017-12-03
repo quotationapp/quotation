@@ -2,8 +2,8 @@ export const getApiUrl = (location) => {
 
     let apiURL;
 
-    if (location === 'quotation.feliperego.com') {
-        apiURL = 'https://quotation-api.feliperego.com/';
+    if (window.location.hostname === 'quotation.feliperego.com') {
+        apiURL = 'http://quotation-api.feliperego.com/';
     } else {
         apiURL = 'http://localhost:3001/';
     }
