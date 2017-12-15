@@ -1,58 +1,105 @@
 import React, { Component } from 'react';
+import axios from "axios";
+import Currency from "../components/Currency";
+import { getApiUrl } from "../common/APIUtils";
 
 class Home extends Component {
-  render() {
-    return (
-        <div className="row values">
-            <div className="col-xs-4 col-md-2 from">
-                <div className="input-group">
-                    <label>US$</label>
-                    <input type="text" id="from" value="381,53"/>
-                        <button>
-                            <img src="images/flags/united-states-of-america.svg" alt="United States of America (flag)"/>
-                                <span>usd</span>
-                        </button>
-                        <div className="currencies active">
-                            <section>
-                                <abbr>brl</abbr>
-                                <p>Brazilian Real</p>
-                            </section>
-                            <section className="selected">
-                                <abbr>usd</abbr>
-                                <p>US Dollar</p>
-                            </section>
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            currencies: [],
+
+            defaultFromCurrency: 'BRL',
+            fromCurrencyValue: 1,
+            fromCurrency: null,
+
+            defaultToCurrency: 'EUR',
+            toCurrencyValue: 1,
+            toCurrency: null,
+        }
+    }
+
+    componentWillMount() {
+
+        axios.get(getApiUrl(this.props.location) + 'currencies')
+            .then(response => {
+                this.setState({currencies: response.data});
+                this.setState({fromCurrency: this.findCurrency(this.state.defaultFromCurrency)});
+                this.setState({toCurrency: this.findCurrency(this.state.defaultToCurrency)});
+                this.setState({toCurrencyValue: this.getToValue(this.state.fromCurrencyValue)})
+            });
+    }
+
+    findCurrency(code) {
+
+        return this.state.currencies.find(currency => currency.code === code);
+    }
+
+    getToValue(value) {
+
+        return (this.state.fromCurrency.price / this.state.toCurrency.price) * value;
+    }
+
+    getFromValue(value) {
+
+        return (this.state.toCurrency.price / this.state.fromCurrency.price ) * value;
+    }
+
+    onChangeToValue(value) {
+
+        this.setState({fromCurrencyValue: this.getFromValue(value)});
+        this.setState({toCurrencyValue: value});
+    }
+
+    onChangeFromValue(value) {
+        this.setState({toCurrencyValue: this.getToValue(value)});
+        this.setState({fromCurrencyValue: value});
+    }
+
+    render() {
+
+        if (this.state.fromCurrency && this.state.toCurrency) {
+
+            return (
+
+                <div className="row values">
+
+                        <Currency
+                            onChange={this.onChangeFromValue.bind(this)}
+                            value={this.state.fromCurrencyValue}
+                            direction="from"
+                            symbol="€"
+                            code="EUR"
+                            name="Euro"
+                            flag="european-union.svg"/>
+
+
+                        <div className="col-xs-4 last-md change">
+                            <button className="btn-change">exchange values</button>
                         </div>
-                </div>
-            </div>
-            <div className="col-xs-4 last-md change">
-                <button className="btn-change">exchange values</button>
-            </div>
-            <div className="col-xs-4 col-md-2 to">
-                <div className="input-group">
-                    <label>R$</label>
-                    <input type="text" id="to" value="1234,56"/>
-                    <button>
-                        <img src="images/flags/brazil.svg" alt="Brazil (flag)"/>
-                            <span>brl</span>
-                    </button>
-                    <div className="currencies active">
-                        <section className="selected">
-                            <abbr>brl</abbr>
-                            <p>Brazilian Real</p>
-                        </section>
-                        <section>
-                            <abbr>usd</abbr>
-                            <p>US Dollar</p>
-                        </section>
+
+                        <Currency
+                            onChange={this.onChangeToValue.bind(this)}
+                            value={this.state.toCurrencyValue}
+                            direction="to"
+                            symbol="R$"
+                            code="BRL"
+                            name="Brazilian Real"
+                            flag="brazil.svg"/>
+
+                    <div className="col-xs-4 last-xs info">
+                        <p>updated on October 27 at 5:59 pm</p>
                     </div>
+
                 </div>
-            </div>
-            <div className="col-xs-4 last-xs info">
-                <p>updated on October 27 at 5:59 pm</p>
-            </div>
-        </div>
-    );
-  }
+            );
+
+        } else {
+            return null;
+        }
+    }
 }
 
 export default Home;

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="96px" height="96px" viewBox="0 0 96 96" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>benin</title>
+    <desc>designed by Freepik from Flaticon</desc>
+    <defs>
+        <polygon id="path-1" points="0.0140487805 0.0934306569 0.0140487805 94.118073 95.9068098 94.118073 95.9068098 0.0934306569"></polygon>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="benin">
+            <path d="M31.2739902,43.7703942 L35.4439024,94.118073 C39.4325854,95.1911241 43.6242732,95.7668905 47.9534049,95.7668905 C74.4365268,95.7668905 95.9068098,74.3488467 95.9068098,47.9301606 L31.2739902,43.7703942 Z" id="Fill-1" fill="#D80027"></path>
+            <g id="Group-5">
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <g id="Clip-3"></g>
+                <path d="M31.2739902,47.9301606 L35.4439024,1.74131387 C39.4325854,0.66919708 43.6242732,0.0934306569 47.9534049,0.0934306569 C74.4365268,0.0934306569 95.9068098,21.5103066 95.9068098,47.9301606 L31.2739902,47.9301606 Z" id="Fill-2" fill="#FFDA44" mask="url(#mask-2)"></path>
+                <path d="M0,47.9301606 C0,70.0314161 15.0265756,88.6290219 35.4439024,94.118073 L35.4439024,1.74131387 C15.0265756,7.23036496 0,25.8279708 0,47.9301606 Z" id="Fill-4" fill="#6DA544" mask="url(#mask-2)"></path>
+            </g>
+        </g>
+    </g>
+</svg>

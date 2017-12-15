@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="96px" height="96px" viewBox="0 0 96 96" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>czech-republic</title>
+    <desc>designed by Freepik from Flaticon</desc>
+    <defs>
+        <polygon id="path-1" points="0.0140487805 0.0934306569 0.0140487805 95.7668905 95.9068098 95.7668905 95.9068098 0.0934306569"></polygon>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="czech-republic">
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <g id="Clip-2"></g>
+            <path d="M95.9068098,47.9301606 C95.9068098,74.3488467 74.4374634,95.7668905 47.9534049,95.7668905 C21.4691122,95.7668905 0,74.3488467 0,47.9301606 C0,21.5103066 21.4691122,0.0934306569 47.9534049,0.0934306569 C74.4374634,0.0934306569 95.9068098,21.5103066 95.9068098,47.9301606 Z" id="Fill-1" fill="#F3F3F3" mask="url(#mask-2)"></path>
+            <path d="M43.7834927,47.9301606 C43.7834927,47.9301606 14.0733659,81.7623358 14.0450341,81.7548613 C22.7232,90.4119124 34.7112585,95.7668905 47.9534049,95.7668905 C74.4365268,95.7668905 95.9068098,74.3488467 95.9068098,47.9301606 L43.7834927,47.9301606 Z" id="Fill-3" fill="#D80027" mask="url(#mask-2)"></path>
+            <path d="M14.0450341,14.104292 C-4.68199024,32.7859854 -4.68199024,63.0743358 14.0450341,81.7557956 L47.9534049,47.9301606 L14.0450341,14.104292 Z" id="Fill-4" fill="#0052B4" mask="url(#mask-2)"></path>
+        </g>
+    </g>
+</svg>

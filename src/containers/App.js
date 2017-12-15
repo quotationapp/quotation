@@ -1,21 +1,14 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Header from '../components/Header';
 import Footer from "../components/Footer";
+import Main from "./Main";
 
-class App extends Component {
-  render() {
-    return (
-        <div>
-            <Header title="quotation"/>
-
-            <main className="container-fluid wrapper">
-                {this.props.children}
-            </main>
-
-            <Footer/>
-        </div>
-    );
-  }
-}
+const App = () => (
+    <div>
+        <Header/>
+        <Main/>
+        <Footer/>
+    </div>
+);
 
 export default App;
