@@ -84,50 +84,6 @@
                 font-size: 2rem;
             }
         }
-
-        div.currencies {
-            margin: .25rem 0;
-
-            display: none;
-
-            section {
-                width: 100%;
-                font-size: 1rem;
-                line-height: 2rem;
-                vertical-align: middle;
-                display: inline-block;
-                margin: .25rem 0;
-                @include border-radius(1rem);
-
-                &:hover {
-                    background: $gray-light;
-                }
-
-                &:before {
-                    content: "";
-                    width: 2rem;
-                    height: 2rem;
-                    background: $gray;
-                    display: inline-block;
-                    float: left;
-                    @include border-radius(1rem);
-                }
-
-                abbr {
-                    font-weight: 800;
-                    text-transform: uppercase;
-                    display: inline-block;
-                    margin-left: .75rem;
-                    margin-right: .25rem;
-                }
-
-                p {
-                    display: inline-block;
-                }
-
-                &.selected {}
-            }
-        }
     }
 
     @include breakpoints-sm {}
