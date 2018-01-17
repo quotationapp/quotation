@@ -1,0 +1,193 @@
+
+.currencies {
+  width: 100vw;
+  height: 100vh;
+  background: $green;
+  color: $white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  //padding: 2rem;
+  margin: 0;
+  overflow-y: auto;
+  z-index: 99;
+
+  display: none;
+
+  &.active {
+    display: inherit;
+  }
+
+  &-header {
+    height: 4rem;
+    overflow-y: hidden;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+
+    background: -webkit-linear-gradient(top, rgba(0,199,82,1) 0%, rgba(0,199,82,1) 70%, rgba(0,199,82,0) 100%);
+    background:    -moz-linear-gradient(top, rgba(0,199,82,1) 0%, rgba(0,199,82,1) 70%, rgba(0,199,82,0) 100%);
+    background:   linear-gradient(to bottom, rgba(0,199,82,1) 0%, rgba(0,199,82,1) 70%, rgba(0,199,82,0) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00c752', endColorstr='#0000c752',GradientType=0 );
+
+    h3 {
+      font-size: 1.25rem;
+      font-weight: 400;
+      line-height: 2rem;
+      display: inline-block;
+      padding: 1rem 1.5rem;
+
+      span {
+        font-weight: 700;
+        text-transform: uppercase;
+
+        &.empty {
+          width: 2.5rem;
+          font-size: 0;
+          line-height: .75rem;
+          display: inline-block;
+          border-bottom: 2px solid $white;
+        }
+      }
+    }
+  }
+
+  &-list {
+    min-height: 100vh;
+    padding-top: 4rem;
+    padding-bottom: 2rem;
+    margin-right: -2rem;
+    margin-left: -2rem;
+
+    .row {
+      margin-right: -1.5rem;
+      margin-left: -1.5rem;
+    }
+
+    .col-xs-4 {
+      padding-right: 1.5rem;
+      padding-left: 1.5rem;
+    }
+  }
+
+  &-close {
+    width: 4rem;
+    height: 4rem;
+    background: none;
+    border: none;
+    font-size: 0;
+    color: $white;
+    cursor: pointer;
+    float: right;
+    margin: 0;
+    padding: 0;
+    @include transition(all 250ms linear);
+
+    i {
+      font-size: 4rem;
+    }
+
+    &:hover {
+      @include transform( scale(1.2) );
+    }
+  }
+
+  &-coin {
+    width: 100%;
+    height: 2rem;
+    background: $green;
+    font-size: .8rem;
+    color: $white;
+    border: none;
+    display: block;
+    cursor: pointer;
+    @include border-radius(1rem);
+    @include display-flex();
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    @include transition(all 250ms ease);
+
+    margin: .25rem 0;
+
+    img {
+      width: 2rem;
+      height: 2rem;
+    }
+
+    abbr {
+      font-weight: 800;
+      text-align: left;
+      text-transform: uppercase;
+      display: inline-block;
+      margin-left: .75rem;
+      margin-right: .25rem;
+    }
+
+    span {
+      margin-right: .75rem;
+      text-align: left;
+    }
+
+    &:hover {
+      background: darken($green, 10%);
+    }
+
+    &.selected {
+      background: $gray-light;
+      color: $color-txt;
+    }
+  }
+
+  @include breakpoints-sm {
+
+    &-coin {
+      height: 2.5rem;
+      font-size: 1rem;
+      margin: .5rem 0;
+      @include border-radius(1.25rem);
+
+      img {
+        width: 2.5rem;
+        height: 2.5rem;
+      }
+
+      abbr {
+        margin-left: 1rem;
+        margin-right: .5rem;
+      }
+
+      span {
+        margin-right: 1rem;
+      }
+    }
+  }
+
+  @include breakpoints-lg {
+
+    &-list {
+
+      .row {
+        margin-right: 3.5rem;
+        margin-left: 3.5rem;
+      }
+
+      .col-xs-4 {
+        padding-right: 3.5rem;
+        padding-left: 3.5rem;
+      }
+    }
+  }
+
+  @include breakpoints-xl {
+
+    &-list {
+
+      .row {
+        margin-right: 7rem;
+        margin-left: 7rem;
+      }
+    }
+  }
+}

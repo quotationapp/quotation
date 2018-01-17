@@ -1,28 +1,36 @@
 import React, {Component} from 'react';
+import CurrencySelect from '../components/CurrencySelect';
+
 
 class Currency extends Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
 
         this.state = {
-            value: 1
-        }
-
-    }
-
-    getFlagImage(imageName) {
-        let image;
-        try { image = require('../assets/images/flags/' + imageName); } catch (e) { image = ''; }
-        return image;
+            value: props.value ? parseFloat(props.value).toFixed(2) : parseFloat(1).toFixed(2),
+            code: props.code
+        };
     }
 
     componentWillReceiveProps(props) {
         this.setState({value: parseFloat(props.value).toFixed(2)});
+        this.setState({code: props.code});
     }
 
-    onChangeValue(event) {
-        this.setState({value: parseFloat(event.target.value).toFixed(2)});
+    handler(action) {
+        switch (action.type) {
+            case 'CHANGE_CURRENCY':
+                this.props.onChange({type: 'CHANGE_CURRENCY', payload: action.payload});
+                break;
+
+            case 'CHANGE_VALUE':
+                this.setState({value: parseFloat(action.payload.target.value).toFixed(2)});
+                this.props.onChange({type: 'CHANGE_VALUE', payload: {direction: this.props.direction, value: action.payload.target.value}});
+                break;
+            default:
+                break;
+        }
     }
 
     render() {
@@ -32,19 +40,14 @@ class Currency extends Component {
 
                     <label>{this.props.symbol}</label>
 
-                    <input type="number" min="1" onChange={ (e) => { this.onChangeValue(e); return this.props.onChange(e.target.value);  } } id="from" value={ this.state.value } />
+                    <input
+                        type="number"
+                        min="1"
+                        id="from"
+                        value={ this.state.value }
+                        onChange={e => { this.handler({type: 'CHANGE_VALUE', payload: e}) } } />
 
-                    <button>
-                        <img src={this.getFlagImage(this.props.flag)} alt={this.props.name + ' (flag)'}/>
-                        <span>{this.props.code}</span>
-                    </button>
-
-                    <div className="currencies active">
-                        <section>
-                            <abbr>{this.props.code}</abbr>
-                            <p>{this.props.name}</p>
-                        </section>
-                    </div>
+                    <CurrencySelect onChange={ e => this.handler({type: 'CHANGE_CURRENCY', payload: e})} direction={this.props.direction} code={this.state.code} />
 
                 </div>
             </div>

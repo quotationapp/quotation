@@ -10,95 +10,98 @@ class Home extends Component {
 
         this.state = {
             currencies: [],
-
-            defaultFromCurrency: 'BRL',
-            fromCurrencyValue: 1,
-            fromCurrency: null,
-
-            defaultToCurrency: 'EUR',
-            toCurrencyValue: 1,
-            toCurrency: null,
+            toCode: 'EUR',
+            fromCode: 'BRL',
+            toValue: 1,
+            fromValue: 1
         }
     }
 
     componentWillMount() {
-
-        axios.get(getApiUrl(this.props.location) + 'currencies')
+        axios
+            .get(getApiUrl(this.props.location) + 'currencies')
             .then(response => {
                 this.setState({currencies: response.data});
-                this.setState({fromCurrency: this.findCurrency(this.state.defaultFromCurrency)});
-                this.setState({toCurrency: this.findCurrency(this.state.defaultToCurrency)});
-                this.setState({toCurrencyValue: this.getToValue(this.state.fromCurrencyValue)})
+                this.setToValue(this.state.fromValue)
             });
     }
 
-    findCurrency(code) {
-
+    getCurrency(code) {
         return this.state.currencies.find(currency => currency.code === code);
     }
 
-    getToValue(value) {
-
-        return (this.state.fromCurrency.price / this.state.toCurrency.price) * value;
+    setToValue(value) {
+        const fromPrice = this.getCurrency(this.state.fromCode).price;
+        const toPrice = this.getCurrency(this.state.toCode).price;
+        this.setState({
+            fromValue: value,
+            toValue: (fromPrice / toPrice) * value
+        });
     }
 
-    getFromValue(value) {
-
-        return (this.state.toCurrency.price / this.state.fromCurrency.price ) * value;
+    setFromValue(value) {
+        const fromPrice = this.getCurrency(this.state.fromCode).price;
+        const toPrice = this.getCurrency(this.state.toCode).price;
+        this.setState({
+            fromValue: (toPrice / fromPrice ) * value,
+            toValue: value
+        });
     }
 
-    onChangeToValue(value) {
+    handler(action) {
+        switch (action.type) {
 
-        this.setState({fromCurrencyValue: this.getFromValue(value)});
-        this.setState({toCurrencyValue: value});
-    }
+            case 'CHANGE_CURRENCY':
+                this.setState(
+                    {toCode: action.payload.code},
+                    ()=> this.setToValue(this.state.fromValue)
+                );
+                break;
 
-    onChangeFromValue(value) {
-        this.setState({toCurrencyValue: this.getToValue(value)});
-        this.setState({fromCurrencyValue: value});
+            case 'CHANGE_VALUE':
+                if (action.payload.direction === 'from') {
+                    this.setToValue(action.payload.value);
+                } else if (action.payload.direction === 'to') {
+                    this.setFromValue(action.payload.value)
+                }
+                break;
+
+            default:
+                break;
+        }
     }
 
     render() {
 
-        if (this.state.fromCurrency && this.state.toCurrency) {
+        if (this.state.currencies.length) {
 
             return (
 
                 <div className="row values">
 
                         <Currency
-                            onChange={this.onChangeFromValue.bind(this)}
-                            value={this.state.fromCurrencyValue}
                             direction="from"
-                            symbol="€"
-                            code="EUR"
-                            name="Euro"
-                            flag="european-union.svg"/>
-
+                            onChange={this.handler.bind(this)}
+                            code={this.state.fromCode}
+                            value={this.state.fromValue} />
 
                         <div className="col-xs-4 last-md change">
                             <button className="btn-change">exchange values</button>
                         </div>
 
                         <Currency
-                            onChange={this.onChangeToValue.bind(this)}
-                            value={this.state.toCurrencyValue}
                             direction="to"
-                            symbol="R$"
-                            code="BRL"
-                            name="Brazilian Real"
-                            flag="brazil.svg"/>
+                            onChange={this.handler.bind(this)}
+                            code={this.state.toCode}
+                            value={this.state.toValue} />
 
                     <div className="col-xs-4 last-xs info">
-                        <p>updated on October 27 at 5:59 pm</p>
+                        {/*<p>updated on October 27 at 5:59 pm</p>*/}
                     </div>
 
                 </div>
             );
-
-        } else {
-            return null;
-        }
+        } else { return null; }
     }
 }
 
