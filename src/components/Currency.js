@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import CurrencySelect from '../components/CurrencySelect';
-
+import currencies from '../assets/jsons/currencies';
 
 class Currency extends Component {
 
@@ -9,7 +9,8 @@ class Currency extends Component {
 
         this.state = {
             value: props.value ? parseFloat(props.value).toFixed(2) : parseFloat(1).toFixed(2),
-            code: props.code
+            code: props.code,
+            symbol: this.getCurrencySymbol(props.code)
         };
     }
 
@@ -18,9 +19,14 @@ class Currency extends Component {
         this.setState({code: props.code});
     }
 
+    getCurrencySymbol(code) {
+        return currencies.data.find(el => el.code === code).symbol;
+    }
+
     handler(action) {
         switch (action.type) {
             case 'CHANGE_CURRENCY':
+                this.setState({symbol: this.getCurrencySymbol(action.payload.code)});
                 this.props.onChange({type: 'CHANGE_CURRENCY', payload: action.payload});
                 break;
 
