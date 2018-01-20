@@ -41,11 +41,21 @@ app.get('/', (req, res) => { res.send("Quotation API"); });
 app.get('/getCurrencies', consumeApi);
 app.get('/currencies', (req, res) => {
 
+
+
     Currencies
         .find({}, {code: 1, price: 1, currency_time: 1, updated_at: 1, _id: 0}, function (err, currency) {
-            if (err)
-                res.send(err);
-        res.json(currency);
+            if (err) res.send(err);
+
+            Log.find({}, function (log_err, log) {
+                if (log_err) res.send(log_err);
+
+                res.json({
+                    last_updating: log[0].updated_at,
+                    currencies: currency
+                });
+
+            }).sort({_id: -1}).limit(1);
     });
 
 });

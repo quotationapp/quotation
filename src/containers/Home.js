@@ -3,12 +3,15 @@ import axios from "axios";
 import Currency from "../components/Currency";
 import { getApiUrl } from "../common/APIUtils";
 
+import * as moment from 'moment';
+
 class Home extends Component {
 
     constructor(props) {
         super(props);
 
         this.state = {
+            updated_at: null,
             currencies: [],
             fromCode: 'USD',
             toCode: 'BRL',
@@ -21,8 +24,9 @@ class Home extends Component {
         axios
             .get(getApiUrl(this.props.location) + 'currencies')
             .then(response => {
-                this.setState({currencies: response.data});
-                this.setToValue(this.state.fromValue)
+                this.setState({currencies: response.data.currencies});
+                this.setState({updated_at: response.data.last_updating});
+                this.setToValue(this.state.fromValue);
             });
     }
 
@@ -105,7 +109,7 @@ class Home extends Component {
                             value={this.state.toValue} />
 
                     <div className="col-xs-4 last-xs info">
-                        {/*<p>updated on October 27 at 5:59 pm</p>*/}
+                        <p>updated on { moment(this.state.updated_at).format('MMMM DD [at] HH:mm a') }</p>
                     </div>
 
                 </div>
