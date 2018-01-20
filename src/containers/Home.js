@@ -10,10 +10,10 @@ class Home extends Component {
 
         this.state = {
             currencies: [],
-            toCode: 'EUR',
-            fromCode: 'BRL',
-            toValue: 1,
-            fromValue: 1
+            fromCode: 'USD',
+            toCode: 'BRL',
+            fromValue: 1,
+            toValue: 1
         }
     }
 
@@ -33,9 +33,10 @@ class Home extends Component {
     setToValue(value) {
         const fromPrice = this.getCurrency(this.state.fromCode).price;
         const toPrice = this.getCurrency(this.state.toCode).price;
+
         this.setState({
             fromValue: value,
-            toValue: (fromPrice / toPrice) * value
+            toValue: (toPrice / fromPrice) * value
         });
     }
 
@@ -52,10 +53,18 @@ class Home extends Component {
         switch (action.type) {
 
             case 'CHANGE_CURRENCY':
-                this.setState(
-                    {toCode: action.payload.code},
-                    ()=> this.setToValue(this.state.fromValue)
-                );
+                if (action.payload.direction === 'from') {
+                    this.setState(
+                        {fromCode: action.payload.code},
+                        ()=> this.setToValue(this.state.fromValue)
+                    );
+                } else if (action.payload.direction === 'to') {
+                    this.setState(
+                        {toCode: action.payload.code},
+                        ()=> this.setToValue(this.state.fromValue)
+                    );
+                }
+
                 break;
 
             case 'CHANGE_VALUE':

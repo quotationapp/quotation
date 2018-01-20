@@ -38,16 +38,18 @@ class Currency extends Component {
             <div className={'col-xs-4 col-md-2 ' + this.props.direction }>
                 <div className="input-group">
 
-                    <label>{this.props.symbol}</label>
+                    <label>{this.state.symbol}</label>
 
                     <input
                         type="number"
-                        min="1"
-                        id="from"
+                        min="0"
                         value={ this.state.value }
                         onChange={e => { this.handler({type: 'CHANGE_VALUE', payload: e}) } } />
 
-                    <CurrencySelect onChange={ e => this.handler({type: 'CHANGE_CURRENCY', payload: e})} direction={this.props.direction} code={this.state.code} />
+                    <CurrencySelect
+                        onChange={ e => this.handler({type: 'CHANGE_CURRENCY', payload: e})}
+                        direction={this.props.direction}
+                        code={this.state.code} />
 
                 </div>
             </div>
