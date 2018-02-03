@@ -1,16 +1,21 @@
-version: '3'
+version: '2'
+
+volumes:
+  mongo_data_local: {}
+  mongo_data_logs: {}
 
 services:
   app:
     container_name: quotation
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: ./compose/local/Dockerfile
     network_mode: "host"
     depends_on:
-        - mongodb
+      - mongodb
     ports:
-        - 5000:5000
+        - 3000:3000
+        - 3001:3001
 
   mongodb:
     image: mongo:latest
@@ -18,12 +23,10 @@ services:
     network_mode: "host"
     environment:
       - MONGO_DATA_DIR=/data/db
-      - MONGO_LOG_DIR=/dev/null
+      - MONGO_LOG_DIR=/dev/logs
     volumes:
-      - /data/db:/data/db
+      - mongo_data_local:/data/db
+      - mongo_data_logs:/data/logs
     ports:
         - 27017:27017
-#    command: mongod --smallfiles --logpath=/dev/null # --quiet
     command: mongod
-
-

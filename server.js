@@ -41,8 +41,6 @@ app.get('/', (req, res) => { res.send("Quotation API"); });
 app.get('/getCurrencies', consumeApi);
 app.get('/currencies', (req, res) => {
 
-
-
     Currencies
         .find({}, {code: 1, price: 1, currency_time: 1, updated_at: 1, _id: 0}, function (err, currency) {
             if (err) res.send(err);
@@ -112,4 +110,7 @@ schedule.scheduleJob('*/30 * * * *', consumeApi);
 let port = 3001;
 
 // Starting the server
-app.listen(port, () => console.log("Listening on port %s...", port));
+app.listen(port, () => {
+    consumeApi();
+    console.log("Listening on port %s...", port)
+});

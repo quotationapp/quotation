@@ -1,0 +1,35 @@
+version: '2'
+
+volumes:
+  mongo_data_local: {}
+  mongo_data_logs: {}
+
+services:
+  app:
+    container_name: quotation
+    build:
+      context: .
+      dockerfile: ./compose/local/Dockerfile
+    network_mode: "host"
+    depends_on:
+      - mongodb
+    volumes:
+      - ./src:/home/app/src
+      - ./public:/home/app/public
+    ports:
+        - 3000:3000
+        - 3001:3001
+
+  mongodb:
+    image: mongo:latest
+    container_name: "mongodb"
+    network_mode: "host"
+    environment:
+      - MONGO_DATA_DIR=/data/db
+      - MONGO_LOG_DIR=/dev/logs
+    volumes:
+      - mongo_data_local:/data/db
+      - mongo_data_logs:/data/logs
+    ports:
+        - 27017:27017
+    command: mongod

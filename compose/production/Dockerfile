@@ -1,10 +1,10 @@
 FROM node
 
-ENV HOME=/home/app
+ENV HOME /home/app
 
-COPY . $HOME/code
+COPY . $HOME
 
-WORKDIR $HOME/code
+WORKDIR $HOME
 RUN yarn install
 RUN yarn build
 
